@@ -9,11 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       candidates: [],
-      candidatesByID: {},
       applications: [],
-      applicationsByID: {},
       questions: [],
-      questionsByID: {},
     }
   }
 
@@ -24,11 +21,7 @@ class App extends Component {
       const candidates = data;
       // console.log('candidates', candidates)
       this.setState({
-        candidates: candidates,
-        candidatesByID: candidates.reduce(
-          (acc, item) => Object.assign(acc, {
-            [item.applicationId]: item
-            }), {})
+        candidates: candidates
       })
     })
     .catch(error => console.log('error', error))
@@ -42,10 +35,6 @@ class App extends Component {
       // console.log('applications', applications)
       this.setState({
         applications: applications,
-        applicationsByID: applications.reduce(
-          (acc, item) => Object.assign(acc, {
-            [item.id]: item
-            }), {})
       })
     })
     .catch(error => console.log('error', error))
@@ -59,10 +48,6 @@ class App extends Component {
       // console.log('questions', questions)
       this.setState({
         questions: questions,
-        questionsByID: questions.reduce(
-          (acc, item) => Object.assign(acc, {
-            [item.id]: item
-            }), {})
       })
     })
     .catch(error => console.log('error', error))
@@ -75,13 +60,13 @@ class App extends Component {
   }
 
   render() {
-    // console.log('appID', this.state.applicationsByID);
-    // console.log('canID', this.state.candidatesByID);
-    // console.log('qID', this.state.questionsByID);
 
     return (
       <div className="App">
-        <List candidates={ this.state.candidates } applications={ this.state.applications } questions={ this.state.questions }/>
+        <List
+          candidates={ this.state.candidates }
+          applications={ this.state.applications }
+          questions={ this.state.questions }/>
       </div>
     );
   }

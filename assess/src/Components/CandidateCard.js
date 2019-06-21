@@ -26,7 +26,6 @@ class CandidateCard extends Component {
         return application;
       }
     }
-    // getQuestionByID(application.video);
   }
 
   applicationSelected = id => {
@@ -35,8 +34,6 @@ class CandidateCard extends Component {
       application: application,
       videos: application.videos
     })
-    // console.log('application', application);
-    console.log('videos', application.videos)
   }
 
   showHidden() {
@@ -54,7 +51,7 @@ class CandidateCard extends Component {
   }
 
   render() {
-    // const { tag, value } = this.state;
+
     const onExpand = (id) => (evt) => {
       this.applicationSelected(id);
       this.showHidden();
@@ -76,7 +73,6 @@ class CandidateCard extends Component {
                 key={ video.questionId }
                 id={ video.questionId }
                 src={ video.src }
-                applications={ this.state.application }
                 questions={ this.props.questions }
                 />
               })
