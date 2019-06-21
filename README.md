@@ -58,3 +58,11 @@ You can use whatever libraries, task runners and build processes you like. React
   I would have comments added to the API so they can persist on the page even when navigating away. Also a way to add a username and delete comments.
 
   I would add a random image API for the candidate pictures.
+
+## Screenshots
+
+!["Screenshot of Main Page"](https://github.com/sahanah-ganesh/react-assess/blob/master/Screenshots/Main.png)
+
+!["Screenshot of Expand"](https://github.com/sahanah-ganesh/react-assess/blob/master/Screenshots/Expand.png)
+
+!["Screenshot of Comment"](https://github.com/sahanah-ganesh/react-assess/blob/master/Screenshots/Comment.png)
