@@ -3,9 +3,13 @@ import CandidateCard from './CandidateCard.js';
 
 class CandidateContainer extends Component {
 
+// Maps candidate array of objects props from App for Candidate Card Component
+// Passing App state to Candidate Card Component
+// With more time I would refactor this into a functional component as it only renders
+
   render() {
     return (
-      <div>
+      <div className="list-page">
         {
           this.props.candidates.map((candidate) => {
             return <CandidateCard

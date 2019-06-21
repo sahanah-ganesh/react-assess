@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import List from './Components/List.js';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CandidateContainer from "./Components/CandidateContainer.js";
 import './Styles/App.css';
 
 class App extends Component {
@@ -14,12 +13,12 @@ class App extends Component {
     }
   }
 
+// Get the candidate array of objects from API and set state
   getCandidates() {
     fetch("http://localhost:3010/candidates")
     .then(response => response.json())
     .then(data => {
       const candidates = data;
-      // console.log('candidates', candidates)
       this.setState({
         candidates: candidates
       })
@@ -27,12 +26,12 @@ class App extends Component {
     .catch(error => console.log('error', error))
   }
 
+// Get the applications array of objects from API and set state
   getApplications() {
     fetch("http://localhost:3010/applications")
     .then(response => response.json())
     .then(data => {
       const applications = data;
-      // console.log('applications', applications)
       this.setState({
         applications: applications,
       })
@@ -40,12 +39,12 @@ class App extends Component {
     .catch(error => console.log('error', error))
   }
 
+// Get the question array of objects from API and set state
   getQuestions() {
     fetch("http://localhost:3010/questions")
     .then(response => response.json())
     .then(data => {
       const questions = data;
-      // console.log('questions', questions)
       this.setState({
         questions: questions,
       })
@@ -53,17 +52,19 @@ class App extends Component {
     .catch(error => console.log('error', error))
   }
 
+// Make fetches happen early in component life cycle
   componentDidMount() {
     this.getCandidates();
     this.getApplications();
     this.getQuestions();
   }
 
+// Pass along state as props to Candidate Container component
   render() {
 
     return (
       <div className="App">
-        <List
+        <CandidateContainer
           candidates={ this.state.candidates }
           applications={ this.state.applications }
           questions={ this.state.questions }/>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '.././Styles/List.css';
+import { stringify } from 'querystring';
 
 class Hidden extends Component {
 
@@ -19,6 +20,7 @@ class Hidden extends Component {
     this.getQuestionByID(this.props.id);
   }
 
+// Similar to getApplicationByID, matching questionIDs
   getQuestionByID(id) {
     for (let question of this.props.questions) {
       if (question.id === id) {
@@ -30,12 +32,14 @@ class Hidden extends Component {
     }
   }
 
+// Every keystroke in comment box changes state
   handleChange(event) {
     this.setState({
       value: event.target.value
     })
   }
 
+// Once enter is hit in comment box, trigger function to create comment
   handleKeyUp(event) {
     const key = event.keyCode;
 
@@ -44,10 +48,11 @@ class Hidden extends Component {
     }
   }
 
+// Remove whitespace from beginning and end of string
+// Set state with every new comment and put value back to empty string for next comment
   createComment() {
     const { comments, value } = this.state;
     let comment = value.trim();
-    comment = comment.replace(/,/g, "");
     if (!comment) {
       return;
     }
@@ -60,7 +65,8 @@ class Hidden extends Component {
   render() {
 
     const { comments, value } = this.state;
-
+// Make comments show on page.
+// With more time I would have the comments persist on the page by adding to API.JSON
     return (
       <div className="candidate-info">
         { this.state.question &&

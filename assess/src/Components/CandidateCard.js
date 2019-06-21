@@ -15,6 +15,7 @@ class CandidateCard extends Component {
     this.showHidden = this.showHidden.bind(this);
   }
 
+// 3. Matching candidate appID with application id
   getApplicationByID(id) {
     for (let application of this.props.applications) {
       if (application.id === id) {
@@ -23,6 +24,7 @@ class CandidateCard extends Component {
     }
   }
 
+// 2. Sets state for selected candidate application and video information with results from 3
   applicationSelected = id => {
     let application = this.getApplicationByID(id);
     this.setState({
@@ -31,6 +33,7 @@ class CandidateCard extends Component {
     })
   }
 
+// Also 2. Toggles expand button from + to - and also hidden information
   showHidden() {
     let newSymbol;
     if (this.state.symbol === "+") {
@@ -47,6 +50,7 @@ class CandidateCard extends Component {
 
   render() {
 
+// 1. onClick triggers this function
     const onExpand = (id) => (evt) => {
       this.applicationSelected(id);
       this.showHidden();
@@ -62,6 +66,7 @@ class CandidateCard extends Component {
           <h3 className="candidate-name">{ this.props.name }</h3>
           <p>ID: { this.props.id }</p>
           <p>Application ID: { this.props.appID }</p>
+{/* When expand button clicked and above functions run, maps through videos to pass along to Hidden Component */}
           { this.state.showHidden && this.state.videos.map((video) => {
               return <Hidden
                 key={ video.questionId }
@@ -72,6 +77,7 @@ class CandidateCard extends Component {
               })
             }
         </div>
+{/* Currently not addressing candidates without applications. Just not showing an expand button */}
         { this.props.appID?
           <div className="expand-button" onClick={ onExpand(this.props.appID) }>{ this.state.symbol }</div>
           : null
