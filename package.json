@@ -14,5 +14,13 @@
   "license": "ISC",
   "devDependencies": {
     "json-server": "^0.14.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahanah-ganesh/react-assess.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sahanah-ganesh/react-assess/issues"
+  },
+  "homepage": "https://github.com/sahanah-ganesh/react-assess#readme"
 }

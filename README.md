@@ -1,57 +1,59 @@
-# Knockri Full Stack (React) Coding Assessment
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Overview
+# Assessment for Knockri
 
-To complete this assessment, you will need to write a simple [React](https://facebook.github.io/react/) web app, and provide us the source files to be built.
+The goal of this assessment was to implement a simple React application, where users will be able to view a job candidate's video responses, comment on the responses & save the data.
 
-The purpose of this assessment is to assess your **skills and approach to composing a simple web app** given an API feed.  We will also assess the **generated HTML, CSS, and JS** output.
-
-This assessment is expected to take about 1-2 hours.
-
-## What to do?
-
-Your goal is to implement a simple React application, where users will be able to view a job candidate's video responses, comment on the responses & save the data. The UX/UI is totally up to you.
-
-Although its a very basic exercise, we will be looking for simple, well-designed, well-commented and tested code in the submission.
-
-Please include a `README` with setup instructions, and any other documentation you created as part of your solution.
-
-Also, add very short info for the following to your `README`:
-
-* How did you decide which technologies to use as part of your solution?
-* Are there any improvements you could make to your submission?
-* What would you do differently if you were allocated more time?
-
-Once you complete implementation, please send us the link to the hosted repository (e.g. Github, Bitbucket...). Alternatively, you may submit your code as a ZIP file too.
-
-## How should the application work?
+## How should it work?
 
 The user of this react application should be able to view the video response(s) of job candidates applying for a job at their company. The application should have the following workflow,
 
 1. Choose candidate from a list.
 2. Depending on the selection in the first step, if the selected candidate has an application, display the video response(s) of the candidate with the relevant question displayed in text. If the selected candidate does not have an application, display appropriate message.
 3. For each video response of a candidate, provide an option to enter comments.
-4. Provide a "Save" button that saves the comments to the api.json file.
+4. Provide a "Save" button that saves the comments to the api.json file. [INCOMPLETE]
 
 ## Requirements
 
-* Only step 1 should be visible when no candidate is picked. Step 1,2,3 and 4 should be visible when a candidate is picked.
+Only step 1 should be visible when no candidate is picked. Step 1,2,3 and 4 should be visible when a candidate is picked.
 
-* User should be able to change candidate selection at any time.
+User should be able to change candidate selection at any time.
 
-* You can use whatever libraries, task runners and build processes you like. React and plain JavaScript are the only requirements (ES6 encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly encouraged if you see a need for it.
+You can use whatever libraries, task runners and build processes you like. React and plain JavaScript are the only requirements (ES6 encouraged, but no TypeScript, CoffeeScript, etc). Redux is strongly encouraged if you see a need for it.
 
-## API Usage
+## Dependencies
 
-API can be launched using npm start. You will need to run npm install once you starting working on the project to install dependencies.
+  json-server: "^0.14.0"
+  react: "^16.8.6",
+  react-dom: "^16.8.6",
+  react-scripts: "0.9.5"
+  react-router-dom: "^5.0.1" (installed but not used)
 
-| Endpoint                     | Result                                              |
-|------------------------------|-----------------------------------------------------|
-| /candidates                  | Lists all available candidates                      |
-| /questions                   | Lists all available questions                       |
-| /applications                | Lists all available applications                    |
+## Getting Started
 
-More info about API usage can be found at the [json-server repo](https://github.com/typicode/json-server).
+1. Install dependencies using the `npm install` command.
+2. Start the web server using the `npm start` command from the assess folder. The app will be served at <http://localhost:3000/>.
+3. Go to <http://localhost:3000/> in your browser.
+4. The API can be launched with `npm start` from the react-assess folder with <http://localhost:3010/> with "/candidates", or "/questions", or "/applications".
 
----
+## Next Steps
 
+How did you decide which technologies to use as part of your solution?
+
+  I used Create React App before and found it to be a great jumping off point. I initially installed react-router-dom thinking I would create routes for candidates, questions and applications like for the API but as I went along I found it was not necessary (not in the requirements).
+
+  I didn't use Redux and tried to handle state management myself. However, it is something I would definitely implement had I more time.
+
+Are there any improvements you could make to your submission?
+
+  I would have liked to have gone back and refactored some duplicate code. There was one component that can be refactored to be a functional component. I would split up the style CSS pages by component insted of using List.css to hold everything.
+
+  I did not implement any testing at this time but would have liked to.
+
+What would you do differently if you were allocated more time?
+
+  I would add some placeholders for the candidates without applications instead of just hiding the expand button. For example, having a text saying "APPLICATION IN PROGRESS" or something along these lines.
+
+  I would have comments added to the API so they can persist on the page even when navigating away. Also a way to add a username and delete comments.
+
+  I would add a random image API for the candidate pictures.
