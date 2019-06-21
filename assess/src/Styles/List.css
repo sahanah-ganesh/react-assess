@@ -31,7 +31,9 @@
 }
 
 .other-info {
-  padding-top: 0.5em;
+  padding: 1em;
+  background-color: rgb(243, 243, 243);
+  border-bottom: none;
 }
 
 .candidate-name {
@@ -46,6 +48,27 @@
   padding-right: 1em;
   font-size: xx-large;
   color: grey;
+}
+
+.question {
+  text-align: center;
+}
+
+.video {
+  display: block;
+  margin: 0 auto;
+}
+
+.comment {
+  padding: 5px;
+  background-color: lightgray;
+  font-size: x-small;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 0.5em;
+  padding: 5px 10px;
+  max-width: 20%;
 }
 
 .comment-input[type=text] {

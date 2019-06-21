@@ -9,15 +9,10 @@ class CandidateCard extends Component {
       value: "",
       showHidden: false,
       symbol: "+",
-      results: true,
       application: null,
       videos: null,
     }
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleKeyUp = this.handleKeyUp.bind(this);
     this.showHidden = this.showHidden.bind(this);
-    // this.createTag = this.createTag.bind(this);
-    // this.tagResults = this.tagResults.bind(this);
   }
 
   getApplicationByID(id) {
@@ -59,7 +54,6 @@ class CandidateCard extends Component {
 
     return (
     <div>
-    { this.state.results &&
       <div className="candidate-card">
         <div className="image-card">
           <img className="candidate-image" src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt={ this.props.alt || 'Image' }/>
@@ -83,7 +77,6 @@ class CandidateCard extends Component {
           : null
         }
       </div>
-    }
     </div>
     )
   }

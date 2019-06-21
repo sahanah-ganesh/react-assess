@@ -6,8 +6,13 @@ class Hidden extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: null
+      question: null,
+      value: "",
+      comments: [],
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.createComment = this.createComment.bind(this);
   }
 
   componentDidMount() {
@@ -25,26 +30,59 @@ class Hidden extends Component {
     }
   }
 
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
+  handleKeyUp(event) {
+    const key = event.keyCode;
+
+    if (key === 13) {
+      this.createComment();
+    }
+  }
+
+  createComment() {
+    const { comments, value } = this.state;
+    let comment = value.trim();
+    comment = comment.replace(/,/g, "");
+    if (!comment) {
+      return;
+    }
+    this.setState({
+      comments: [...comments, comment],
+      value: ""
+    })
+  }
 
   render() {
+
+    const { comments, value } = this.state;
 
     return (
       <div className="candidate-info">
         { this.state.question &&
         <div className="other-info">
-            <h2>Question: { this.state.question.question }</h2>
-            <video width="320" height="240" controls>
+            <h3 className="question">Question: { this.state.question.question }</h3>
+            <video className="video" width="320" height="240" controls>
               <source src={ this.props.src } type="video/mp4"/>
             </video>
-            <h4>Comments:</h4>
+            <h3>Comments:</h3>
+              { comments.map((comment, i) => (
+                <p key={comment + i} className="comment">
+                  {comment}
+                </p>
+              )) }
             <input
                 type="text"
                 placeholder="Comment & hit ENTER"
-                // value={ value }
-                // onChange={ this.handleChange }
-                // ref="tag"
+                value={ value }
+                onChange={ this.handleChange }
+                ref="comment"
                 className="comment-input"
-                // onKeyUp={ this.handleKeyUp }
+                onKeyUp={ this.handleKeyUp }
                 />
           </div>
         }
