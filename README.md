@@ -32,9 +32,10 @@ You can use whatever libraries, task runners and build processes you like. React
 ## Getting Started
 
 1. Install dependencies using the `npm install` command.
-2. Start the web server using the `npm start` command from the assess folder. The app will be served at <http://localhost:3000/>.
-3. Go to <http://localhost:3000/> in your browser.
-4. The API can be launched with `npm start` from the react-assess folder with <http://localhost:3010/> with "/candidates", or "/questions", or "/applications".
+2. Launch API with `npm start` from the react-assess folder. You can navigate to <http://localhost:3010/> in your browser with "/candidates", or "/questions", or "/applications" to see the JSON.
+3. Start the web server using the `npm start` command from the assess folder. The app will be served at <http://localhost:3000/>.
+4. Go to <http://localhost:3000/> in your browser.
+
 
 ## Next Steps
 
