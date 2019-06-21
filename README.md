@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Assessment for Knockri
+# Assessment
 
 The goal of this assessment was to implement a simple React application, where users will be able to view a job candidate's video responses, comment on the responses & save the data.
 
