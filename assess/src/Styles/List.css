@@ -1,0 +1,49 @@
+.list-page {
+  text-align: left;
+  height: 40em;
+  overflow-x: hidden;
+  overflow: scroll;
+}
+
+.candidate-card {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr .05fr;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 1em;
+}
+
+.image-card {
+  padding: 0.5em;
+}
+
+.candidate-image {
+  align-self: flex-start;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+}
+
+.candidate-info {
+  align-self: flex-start;
+  font-size: xx-small;
+  color: gray;
+}
+
+.other-info {
+  padding-top: 0.5em;
+}
+
+.candidate-name {
+  text-transform: uppercase;
+  color: black;
+  font-size: x-large;
+  margin-bottom: 0;
+}
+
+.expand-button {
+  float: right;
+  padding-right: 1em;
+  font-size: xx-large;
+  color: grey;
+}
