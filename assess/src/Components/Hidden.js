@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '.././Styles/List.css';
-import { stringify } from 'querystring';
 
 class Hidden extends Component {
 
@@ -24,7 +23,6 @@ class Hidden extends Component {
   getQuestionByID(id) {
     for (let question of this.props.questions) {
       if (question.id === id) {
-        console.log('q', question);
         this.setState({
           question: question
         })
