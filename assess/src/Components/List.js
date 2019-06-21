@@ -8,7 +8,11 @@ class List extends Component {
 
     return (
       <div className="list-page">
-        <CandidateContainer candidates={ this.props.candidates } applications={ this.props.applications }/>
+        <CandidateContainer
+          candidates={ this.props.candidates }
+          applications={ this.props.applications }
+          questions={ this.props.questions }
+          />
       </div>
     );
   }

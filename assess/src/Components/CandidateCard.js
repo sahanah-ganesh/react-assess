@@ -6,42 +6,38 @@ class CandidateCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: [],
       value: "",
       showHidden: false,
       symbol: "+",
       results: true,
-      chosen: null,
+      application: null,
+      videos: null,
     }
     // this.handleChange = this.handleChange.bind(this);
     // this.handleKeyUp = this.handleKeyUp.bind(this);
     this.showHidden = this.showHidden.bind(this);
-    // this.getCandidateByID = this.getCandidateByID(this);
-    // this.candidateSelected = this.candidateSelected(this);
     // this.createTag = this.createTag.bind(this);
     // this.tagResults = this.tagResults.bind(this);
   }
 
   getApplicationByID(id) {
-    console.log('id2', id);
     for (let application of this.props.applications) {
       if (application.id === id) {
-        console.log('can', application);
         return application;
       }
     }
-    return false;
+    // getQuestionByID(application.video);
   }
 
-  candidateSelected = id => {
-    console.log('id', id);
-    let chosenOne = this.getApplicationByID(id);
+  applicationSelected = id => {
+    let application = this.getApplicationByID(id);
     this.setState({
-      chosen: chosenOne
+      application: application,
+      videos: application.videos
     })
-    console.log('chosen', chosenOne)
+    // console.log('application', application);
+    console.log('videos', application.videos)
   }
-
 
   showHidden() {
     let newSymbol;
@@ -60,7 +56,7 @@ class CandidateCard extends Component {
   render() {
     // const { tag, value } = this.state;
     const onExpand = (id) => (evt) => {
-      this.candidateSelected(id);
+      this.applicationSelected(id);
       this.showHidden();
     }
 
@@ -75,13 +71,21 @@ class CandidateCard extends Component {
           <h3 className="candidate-name">{ this.props.name }</h3>
           <p>ID: { this.props.id }</p>
           <p>Application ID: { this.props.appID }</p>
-          { this.state.showHidden &&
-            <div>
-              <Hidden applications={ this.props.applications } questions={ this.props.questions }/>
-            </div>
-          }
+          { this.state.showHidden && this.state.videos.map((video) => {
+              return <Hidden
+                key={ video.questionId }
+                id={ video.questionId }
+                src={ video.src }
+                applications={ this.state.application }
+                questions={ this.props.questions }
+                />
+              })
+            }
         </div>
-        <div className="expand-button" onClick={ onExpand(this.props.appID) }>{ this.state.symbol }</div>
+        { this.props.appID?
+          <div className="expand-button" onClick={ onExpand(this.props.appID) }>{ this.state.symbol }</div>
+          : null
+        }
       </div>
     }
     </div>

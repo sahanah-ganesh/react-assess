@@ -81,7 +81,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <List candidates={ this.state.candidates } applications={ this.state.applications } questions={ this.state.questionsByID }/>
+        <List candidates={ this.state.candidates } applications={ this.state.applications } questions={ this.state.questions }/>
       </div>
     );
   }
