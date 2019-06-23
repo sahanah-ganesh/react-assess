@@ -30,8 +30,6 @@ You can use whatever libraries, task runners and build processes you like. React
   react-redux: "^7.1.0",
   redux-thunk: "^2.3.0",
   redux: "^4.0.1",
-  redux-thunk: "^2.3.0",
-  uuid: "^3.3.2"
 
 ## Getting Started
 
