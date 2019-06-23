@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './Modules/store.js';
 import App from './App';
 import './Styles/index.css';
 
-ReactDOM.render(
-  <App />,
+import { addComment } from './Modules/action.js';
+
+window.store = store;
+window.addComment = addComment;
+
+render(
+  <Provider store={ store }>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 );

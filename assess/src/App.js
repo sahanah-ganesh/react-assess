@@ -1,76 +1,51 @@
-import React, { Component } from "react";
-import CandidateContainer from "./Components/CandidateContainer.js";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getCandidates } from './Modules/action.js';
+import { getApplications } from './Modules/action.js';
+import { getQuestions } from './Modules/action.js';
+import CandidateCard from './Components/CandidateCard.js';
 import './Styles/App.css';
 
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      candidates: [],
-      applications: [],
-      questions: [],
-    }
-  }
-
-// Get the candidate array of objects from API and set state
-  getCandidates() {
-    fetch("http://localhost:3010/candidates")
-    .then(response => response.json())
-    .then(data => {
-      const candidates = data;
-      this.setState({
-        candidates: candidates
-      })
-    })
-    .catch(error => console.log('error', error))
-  }
-
-// Get the applications array of objects from API and set state
-  getApplications() {
-    fetch("http://localhost:3010/applications")
-    .then(response => response.json())
-    .then(data => {
-      const applications = data;
-      this.setState({
-        applications: applications,
-      })
-    })
-    .catch(error => console.log('error', error))
-  }
-
-// Get the question array of objects from API and set state
-  getQuestions() {
-    fetch("http://localhost:3010/questions")
-    .then(response => response.json())
-    .then(data => {
-      const questions = data;
-      this.setState({
-        questions: questions,
-      })
-    })
-    .catch(error => console.log('error', error))
-  }
-
-// Make fetches happen early in component life cycle
+export class App extends Component {
   componentDidMount() {
-    this.getCandidates();
-    this.getApplications();
-    this.getQuestions();
+    this.props.getCandidates();
+    this.props.getApplications();
+    this.props.getQuestions();
   }
 
-// Pass along state as props to Candidate Container component
   render() {
-
     return (
-      <div className="App">
-        <CandidateContainer
-          candidates={ this.state.candidates }
-          applications={ this.state.applications }
-          questions={ this.state.questions }/>
+      <div className='App'>
+        <div className='list-page'>
+          {
+            this.props.candidates.map((candidate) => {
+              return <CandidateCard
+                key={ candidate.id }
+                id={ candidate.id }
+                name={ candidate.name }
+                appID={ candidate.applicationId }
+                candidates={ this.props.candidates }
+                applications={ this.props.applications }
+                questions={ this.props.questions }
+              />
+            })
+          }
+        </div>
       </div>
-    );
+    )
   }
+};
+
+function mapStateToProps(state) {
+  return {
+    candidates: state.candidates,
+    applications: state.applications,
+    questions: state.questions
+  };
 }
 
-export default App;
+export default connect(
+  mapStateToProps,
+  { getCandidates, getApplications, getQuestions },
+)(App);
+

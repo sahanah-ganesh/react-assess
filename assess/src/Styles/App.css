@@ -8,3 +8,124 @@
   border: 1px solid lightgrey;
 }
 
+.list-page {
+  text-align: left;
+  height: 40em;
+  overflow-x: hidden;
+  overflow: scroll;
+}
+
+.candidate-card {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr .05fr;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 1em;
+}
+
+.image-card {
+  padding: 0.5em;
+}
+
+.candidate-image {
+  align-self: flex-start;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 1px solid lightgrey;
+}
+
+.candidate-info {
+  align-self: flex-start;
+  font-size: xx-small;
+  color: gray;
+}
+
+.other-info {
+  padding: 1em;
+  background-color: rgb(243, 243, 243);
+  border: 0.5px solid lightgray;
+}
+
+.candidate-name {
+  text-transform: uppercase;
+  color: black;
+  font-size: x-large;
+  margin-bottom: 0;
+}
+
+.alert {
+  color: red;
+  text-transform: uppercase;
+}
+
+.expand-button {
+  float: right;
+  padding-right: 1em;
+  font-size: xx-large;
+  color: grey;
+}
+
+.question {
+  text-align: center;
+  color: black;
+  letter-spacing: 0.05em;
+}
+
+.video {
+  display: block;
+  margin: 0 auto;
+}
+
+.comment-box {
+  padding-top: 1em;
+}
+
+.comment {
+  padding: 5px;
+  background-color: lightgray;
+  font-size: x-small;
+  color: black;
+  text-align: left;
+  overflow: hidden;
+  border-radius: 0.5em;
+  padding: 5px 10px;
+  max-width: 100%;
+}
+
+.comment-input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.comment-input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+#save:hover {
+  letter-spacing: 0.8em;
+  background-color: lightgrey;
+}
+
+#save {
+  color: white;
+}
+
+.save-button {
+  height: 2em;
+  width: 25%;
+  padding: 1.5em auto;
+  margin: 1em auto;
+  background-color: grey;
+  border: none;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  transition: all 0.2s cubic-bezier(.4, 0, .2, 1);
+  display: block;
+}

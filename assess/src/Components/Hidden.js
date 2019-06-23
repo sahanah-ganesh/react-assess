@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '.././Styles/List.css';
 
 class Hidden extends Component {
 
@@ -7,12 +6,11 @@ class Hidden extends Component {
     super(props);
     this.state = {
       question: null,
-      value: "",
-      comments: [],
+      questionID: null,
+      value: '',
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.createComment = this.createComment.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +22,8 @@ class Hidden extends Component {
     for (let question of this.props.questions) {
       if (question.id === id) {
         this.setState({
-          question: question
+          question: question,
+          questionID: id
         })
       }
     }
@@ -37,58 +36,79 @@ class Hidden extends Component {
     })
   }
 
-// Once enter is hit in comment box, trigger function to create comment
-  handleKeyUp(event) {
-    const key = event.keyCode;
-
-    if (key === 13) {
-      this.createComment();
-    }
-  }
-
-// Remove whitespace from beginning and end of string
-// Set state with every new comment and put value back to empty string for next comment
-  createComment() {
-    const { comments, value } = this.state;
+// Remove whitespace from beginning and end of string and make comment
+// Set value back to empty string for new event target value
+// Find in video arr the obj where questionID matches current questionID
+// Find all video objs in video arr
+// Make new comment obj with comments added to existing comment arr
+// PUT to update json api with new comment obj
+  handleSubmit(event) {
+    event.preventDefault();
+    const { value } = this.state;
     let comment = value.trim();
     if (!comment) {
       return;
     }
     this.setState({
-      comments: [...comments, comment],
-      value: ""
+      value: ''
     })
+    let app = this.props.app;
+    let videoArr = this.props.videos.filter((video) => {
+      return video.questionId === this.state.questionID
+    })
+    const allVideos = this.props.videos.filter((video) => {
+      return video.questionId !== this.state.questionID
+    })
+    videoArr[0].comments.push(comment);
+    allVideos.push(videoArr[0]);
+    let newComment = {
+      id: app,
+      videos: allVideos
+    }
+    const postComments = (data) => {
+      return fetch(`http://localhost:3010/applications/${data.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      })
+    }
+    postComments(newComment);
   }
 
   render() {
-
-    const { comments, value } = this.state;
+    const { value } = this.state;
 // Make comments show on page.
-// With more time I would have the comments persist on the page by adding to API.JSON
     return (
-      <div className="candidate-info">
+      <div className='candidate-info'>
         { this.state.question &&
-        <div className="other-info">
-            <h3 className="question">Question: { this.state.question.question }</h3>
-            <video className="video" width="320" height="240" controls>
-              <source src={ this.props.src } type="video/mp4"/>
+        <div className='other-info'>
+            <span><h2 className='question'>Question: { this.state.question.question }</h2></span>
+            <video className='video' width='320' height='240' controls>
+              <source src={ this.props.src } type='video/mp4'/>
             </video>
-            <h3>Comments:</h3>
-              { comments.map((comment, i) => (
-                <p key={comment + i} className="comment">
-                  {comment}
-                </p>
-              )) }
-            <input
-                type="text"
-                placeholder="Comment & hit ENTER"
-                value={ value }
-                onChange={ this.handleChange }
-                ref="comment"
-                className="comment-input"
-                onKeyUp={ this.handleKeyUp }
+            { this.props.comments ? this.props.comments.map((comment, i) => (
+              <p className="comment" key={ comment + i }>
+                <b>Anonymous</b>: { comment }
+              </p>
+              ))
+              :
+              null
+            }
+            <form onSubmit={ this.handleSubmit }>
+              <div className='comment-box'>
+                <input
+                  type='text'
+                  className='comment-input'
+                  placeholder='Leave a comment'
+                  value={ value }
+                  onChange={ this.handleChange }
                 />
-          </div>
+              </div>
+              <button id='save' type='submit' className='save-button'>SAVE</button>
+              </form>
+        </div>
         }
       </div>
     );

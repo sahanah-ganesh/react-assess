@@ -6,9 +6,9 @@ class CandidateCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value: '',
       showHidden: false,
-      symbol: "+",
+      symbol: '+',
       application: null,
       videos: null,
     }
@@ -36,10 +36,10 @@ class CandidateCard extends Component {
 // Also 2. Toggles expand button from + to - and also hidden information
   showHidden() {
     let newSymbol;
-    if (this.state.symbol === "+") {
-      newSymbol = "-";
+    if (this.state.symbol === '+') {
+      newSymbol = '-';
     } else {
-      newSymbol = "+";
+      newSymbol = '+';
     }
 
     this.setState({
@@ -58,28 +58,36 @@ class CandidateCard extends Component {
 
     return (
     <div>
-      <div className="candidate-card">
-        <div className="image-card">
-          <img className="candidate-image" src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png" alt={ this.props.alt || 'Image' }/>
+      <div className='candidate-card'>
+        <div className='image-card'>
+          <img className='candidate-image' src='https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png' alt={ this.props.alt || 'Image' }/>
         </div>
-        <div className="candidate-info">
-          <h3 className="candidate-name">{ this.props.name }</h3>
+        <div className='candidate-info'>
+          <h3 className='candidate-name'>{ this.props.name }</h3>
           <p>ID: { this.props.id }</p>
-          <p>Application ID: { this.props.appID }</p>
+{/* Showing no application alert if no application for candidate */}
+          { this.props.appID ?
+            <p>Application ID: { this.props.appID }</p>
+            :
+            <h4 className='alert'>This candidate has not submitted an application</h4>
+          }
 {/* When expand button clicked and above functions run, maps through videos to pass along to Hidden Component */}
           { this.state.showHidden && this.state.videos.map((video) => {
               return <Hidden
                 key={ video.questionId }
                 id={ video.questionId }
+                app={ this.props.appID }
                 src={ video.src }
+                comments={ video.comments }
                 questions={ this.props.questions }
+                videos={ this.state.videos }
                 />
               })
             }
         </div>
-{/* Currently not addressing candidates without applications. Just not showing an expand button */}
+{/* Not showing an expand button if no application for candidate */}
         { this.props.appID?
-          <div className="expand-button" onClick={ onExpand(this.props.appID) }>{ this.state.symbol }</div>
+          <div className='expand-button' onClick={ onExpand(this.props.appID) }>{ this.state.symbol }</div>
           : null
         }
       </div>
