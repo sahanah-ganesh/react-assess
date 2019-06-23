@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/sahanah-ganesh/react-assess/issues"
   },
-  "homepage": "https://github.com/sahanah-ganesh/react-assess#readme"
+  "homepage": "https://github.com/sahanah-ganesh/react-assess#readme",
+  "dependencies": {
+    "react-redux": "^7.1.0",
+    "redux-starter-kit": "^0.5.1",
+    "redux-thunk": "^2.3.0"
+  }
 }

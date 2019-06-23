@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Assessment for Knockri
+# Assessment
 
 The goal of this assessment was to implement a simple React application, where users will be able to view a job candidate's video responses, comment on the responses & save the data.
 
@@ -11,7 +11,7 @@ The user of this react application should be able to view the video response(s) 
 1. Choose candidate from a list.
 2. Depending on the selection in the first step, if the selected candidate has an application, display the video response(s) of the candidate with the relevant question displayed in text. If the selected candidate does not have an application, display appropriate message.
 3. For each video response of a candidate, provide an option to enter comments.
-4. Provide a "Save" button that saves the comments to the api.json file. [INCOMPLETE]
+4. Provide a "Save" button that saves the comments to the api.json file.
 
 ## Requirements
 
@@ -23,11 +23,15 @@ You can use whatever libraries, task runners and build processes you like. React
 
 ## Dependencies
 
-  json-server: "^0.14.0"
+  json-server: "^0.14.0",
   react: "^16.8.6",
   react-dom: "^16.8.6",
-  react-scripts: "0.9.5"
-  react-router-dom: "^5.0.1" (installed but not used)
+  react-scripts: "0.9.5",
+  react-redux: "^7.1.0",
+  redux-thunk: "^2.3.0",
+  redux: "^4.0.1",
+  redux-thunk: "^2.3.0",
+  uuid: "^3.3.2"
 
 ## Getting Started
 
@@ -41,21 +45,13 @@ You can use whatever libraries, task runners and build processes you like. React
 
 **How did you decide which technologies to use as part of your solution?**
 
-  I used Create React App before and found it to be a great jumping off point. I initially installed react-router-dom thinking I would create routes for candidates, questions and applications like for the API but as I went along I found it was not necessary (not in the requirements).
-
-  I didn't use Redux and tried to handle state management myself. However, it is something I would definitely implement had I more time.
+  I used Create React App before and found it to be a great jumping off point. I implemented Redux for state management as a second submission.
 
 **Are there any improvements you could make to your submission?**
-
-  I would have liked to have gone back and refactored some duplicate code. There was one component that can be refactored to be a functional component. I would split up the style CSS pages by component insted of using List.css to hold everything.
 
   I did not implement any testing at this time but would have liked to. Also I accidentally put node_modules on github and only realized after the fact. I would have liked to create a gitignore from the beginning.
 
 **What would you do differently if you were allocated more time?**
-
-  I would add some placeholders for the candidates without applications instead of just hiding the expand button. For example, having a text saying "APPLICATION IN PROGRESS" or something along these lines.
-
-  I would have comments added to the API so they can persist on the page even when navigating away. Also a way to add a username and delete comments.
 
   I would add a random image API for the candidate pictures.
 
